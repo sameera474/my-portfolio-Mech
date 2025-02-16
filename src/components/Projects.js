@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
@@ -7,61 +7,91 @@ import {
   CardContent,
   Typography,
   Button,
+  Modal,
+  Backdrop,
+  Fade,
+  IconButton,
 } from "@mui/material";
-// import { GitHub } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
+// ✅ Corrected Project Data (Images & Video Loaded Properly)
 const projects = [
   {
-    title: "3D Modeled Robotic Arm",
-    img: "/projects/robotic-arm.png",
-    ScreenShots: "#",
+    title: "Grearbox",
+    img: require("../assets/projects/screenshots/Grearbox/11.jpg"),
+    screenshots: [
+      require("../assets/projects/screenshots/Grearbox/1.jpg"),
+      require("../assets/projects/screenshots/Grearbox/2.jpg"),
+      require("../assets/projects/screenshots/Grearbox/3.jpg"),
+      require("../assets/projects/screenshots/Grearbox/4.jpg"),
+      require("../assets/projects/screenshots/Grearbox/5.jpg"),
+      require("../assets/projects/screenshots/Grearbox/6.jpg"),
+      require("../assets/projects/screenshots/Grearbox/7.jpg"),
+      require("../assets/projects/screenshots/Grearbox/8.jpg"),
+      require("../assets/projects/screenshots/Grearbox/9.jpg"),
+      require("../assets/projects/screenshots/Grearbox/10.jpg"),
+      require("../assets/projects/screenshots/Grearbox/11.jpg"),
+    ],
     live: "#",
   },
   {
-    title: "CNC Machined Part Design",
-    img: "/projects/cnc-part.png",
-    ScreenShots: "#",
+    title: "Air Pod",
+    img: require("../assets/projects/screenshots/AirPod/1.jpg"),
+    screenshots: [
+      require("../assets/projects/screenshots/AirPod/1.jpg"),
+      "/assets/projects/screenshots/AirPod/Part1.mp4", // ✅ Keeping as a string (no require for videos)
+    ],
     live: "#",
   },
   {
-    title: "Metallurgical Analysis - XRD",
-    img: "/projects/metallurgy.png",
-    ScreenShots: "#",
-    live: "#",
-  },
-  {
-    title: "Polymer Composites Research",
-    img: "/projects/polymers.png",
-    ScreenShots: "#",
-    live: "#",
-  },
-  {
-    title: "Ceramic Coating for Heat Resistance",
-    img: "/projects/ceramics.png",
-    ScreenShots: "#",
-    live: "#",
-  },
-  {
-    title: "G-code Optimization for CNC",
-    img: "/projects/gcode.png",
-    ScreenShots: "#",
-    live: "#",
-  },
-  {
-    title: "Finite Element Analysis (FEA)",
-    img: "/projects/fea.png",
-    ScreenShots: "#",
-    live: "#",
-  },
-  {
-    title: "Steel Alloy Characterization",
-    img: "/projects/steel.png",
-    ScreenShots: "#",
+    title: "Air Pod",
+    img: require("../assets/projects/screenshots/AirPod/1.jpg"),
+    screenshots: [
+      require("../assets/projects/screenshots/AirPod/1.jpg"),
+      "/assets/projects/screenshots/AirPod/Part1.mp4", // ✅ Keeping as a string (no require for videos)
+    ],
     live: "#",
   },
 ];
 
 export default function Projects() {
+  // State for modal (popup)
+  const [open, setOpen] = useState(false);
+  const [selectedScreenshots, setSelectedScreenshots] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Function to open modal & load project screenshots
+  const handleOpen = (screenshots) => {
+    if (screenshots.length > 0) {
+      setSelectedScreenshots(screenshots);
+      setCurrentIndex(0); // Start from the first screenshot
+      setOpen(true);
+    }
+  };
+
+  // Function to close modal
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedScreenshots([]);
+    setCurrentIndex(0);
+  };
+
+  // Function to show the previous screenshot
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? selectedScreenshots.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Function to show the next screenshot
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === selectedScreenshots.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
     <Box sx={{ p: 5 }}>
       <Typography
@@ -85,14 +115,15 @@ export default function Projects() {
               <CardContent>
                 <Typography variant="h6">{project.title}</Typography>
                 <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+                  {/* Screenshot Button - Opens Modal */}
                   <Button
                     size="small"
                     variant="outlined"
-                    href={project.ScreenShots}
-                    target="_blank"
+                    onClick={() => handleOpen(project.screenshots)}
                   >
-                    ScreenShots
+                    Screenshots
                   </Button>
+                  {/* Live Project Button */}
                   <Button
                     size="small"
                     variant="contained"
@@ -108,6 +139,124 @@ export default function Projects() {
           </Grid>
         ))}
       </Grid>
+
+      {/* Modal for Screenshot & Video Preview */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{ timeout: 500 }}
+      >
+        <Fade in={open}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: { xs: "90%", md: "80%" },
+              maxHeight: "90vh",
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              borderRadius: "10px",
+              textAlign: "center",
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
+            }}
+          >
+            {/* Close Button */}
+            <IconButton
+              onClick={handleClose}
+              sx={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                color: "white",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+
+            {/* Previous Button */}
+            {selectedScreenshots.length > 1 && (
+              <IconButton
+                onClick={handlePrevious}
+                sx={{
+                  position: "absolute",
+                  left: 10,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  color: "white",
+                  "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" },
+                }}
+              >
+                <ArrowBackIosNewIcon />
+              </IconButton>
+            )}
+
+            {/* Conditional Rendering: Image or Video */}
+            {selectedScreenshots.length > 0 &&
+            selectedScreenshots[currentIndex] ? (
+              selectedScreenshots[currentIndex].endsWith(".mp4") ? (
+                <video
+                  controls
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "85vh",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <source
+                    src={selectedScreenshots[currentIndex]}
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  src={selectedScreenshots[currentIndex]}
+                  alt="Project Screenshot"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "85vh",
+                    objectFit: "contain",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                />
+              )
+            ) : (
+              <Typography variant="h6">No media available</Typography>
+            )}
+
+            {/* Next Button */}
+            {selectedScreenshots.length > 1 && (
+              <IconButton
+                onClick={handleNext}
+                sx={{
+                  position: "absolute",
+                  right: 10,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  color: "white",
+                  "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" },
+                }}
+              >
+                <ArrowForwardIosIcon />
+              </IconButton>
+            )}
+          </Box>
+        </Fade>
+      </Modal>
     </Box>
   );
 }
