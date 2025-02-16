@@ -49,7 +49,7 @@ export default function Home({ darkMode }) {
               width: { xs: 200, sm: 250, md: 280, lg: 320 }, // ✅ Optimized size
               height: { xs: 200, sm: 250, md: 280, lg: 320 },
               mx: "auto",
-              mt: { xs: 0, sm: 1, md: 0 }, // ✅ Slight margin to balance layout
+              mt: { xs: 10, sm: 10, md: 10, lg: 10 }, // ✅ Slight margin to balance layout
               boxShadow: darkMode
                 ? "0px 0px 15px rgba(255,255,255,0.2)"
                 : "0px 0px 15px rgba(0,0,0,0.2)",
@@ -65,6 +65,7 @@ export default function Home({ darkMode }) {
               color: "secondary.main",
               letterSpacing: 2,
               fontWeight: "bold",
+              mt: { lg: 10 },
             }}
           >
             Mechanical Designer & Materials Engineer
