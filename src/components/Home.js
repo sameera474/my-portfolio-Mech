@@ -8,7 +8,7 @@ import linkedInDark from "../assets/icons/linkedin-dark.svg"; // Dark LinkedIn f
 import githubLight from "../assets/icons/github-light.svg"; // White GitHub for dark mode
 import githubDark from "../assets/icons/github-dark.svg"; // Dark GitHub for light mode
 
-import cvFile from "../assets/CV/CV-Sameera-Wagaarachchige-FD.pdf"; // CV File
+import cvFile from "../assets/CV/CV-Sameera-Wagaarachchige.pdf"; // CV File
 
 export default function Home({ darkMode }) {
   return (

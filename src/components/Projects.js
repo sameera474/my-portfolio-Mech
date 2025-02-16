@@ -16,7 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-// ✅ Corrected Project Data (Images & Video Loaded Properly)
+// ✅ Corrected Project Data (Using `public` folder for video)
 const projects = [
   {
     title: "Grearbox",
@@ -25,14 +25,6 @@ const projects = [
       require("../assets/projects/screenshots/Grearbox/1.jpg"),
       require("../assets/projects/screenshots/Grearbox/2.jpg"),
       require("../assets/projects/screenshots/Grearbox/3.jpg"),
-      require("../assets/projects/screenshots/Grearbox/4.jpg"),
-      require("../assets/projects/screenshots/Grearbox/5.jpg"),
-      require("../assets/projects/screenshots/Grearbox/6.jpg"),
-      require("../assets/projects/screenshots/Grearbox/7.jpg"),
-      require("../assets/projects/screenshots/Grearbox/8.jpg"),
-      require("../assets/projects/screenshots/Grearbox/9.jpg"),
-      require("../assets/projects/screenshots/Grearbox/10.jpg"),
-      require("../assets/projects/screenshots/Grearbox/11.jpg"),
     ],
     live: "#",
   },
@@ -41,51 +33,51 @@ const projects = [
     img: require("../assets/projects/screenshots/AirPod/1.jpg"),
     screenshots: [
       require("../assets/projects/screenshots/AirPod/1.jpg"),
-      "/assets/projects/screenshots/AirPod/Part1.mp4", // ✅ Keeping as a string (no require for videos)
+      "/assets/projects/screenshots/AirPod/Part1.mp4", // ✅ Load video from `public/`
     ],
     live: "#",
   },
   {
-    title: "Air Pod",
-    img: require("../assets/projects/screenshots/AirPod/1.jpg"),
+    title: "Mould",
+    img: require("../assets/projects/screenshots/Mould/1.jpg"),
     screenshots: [
-      require("../assets/projects/screenshots/AirPod/1.jpg"),
-      "/assets/projects/screenshots/AirPod/Part1.mp4", // ✅ Keeping as a string (no require for videos)
+      require("../assets/projects/screenshots/Mould/1.jpg"),
+      require("../assets/projects/screenshots/Mould/2.jpg"),
+      require("../assets/projects/screenshots/Mould/3.jpg"),
     ],
     live: "#",
   },
 ];
 
 export default function Projects() {
-  // State for modal (popup)
   const [open, setOpen] = useState(false);
   const [selectedScreenshots, setSelectedScreenshots] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Function to open modal & load project screenshots
+  // Open Modal with Screenshots/Videos
   const handleOpen = (screenshots) => {
     if (screenshots.length > 0) {
       setSelectedScreenshots(screenshots);
-      setCurrentIndex(0); // Start from the first screenshot
+      setCurrentIndex(0);
       setOpen(true);
     }
   };
 
-  // Function to close modal
+  // Close Modal
   const handleClose = () => {
     setOpen(false);
     setSelectedScreenshots([]);
     setCurrentIndex(0);
   };
 
-  // Function to show the previous screenshot
+  // Navigate Previous Screenshot
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? selectedScreenshots.length - 1 : prevIndex - 1
     );
   };
 
-  // Function to show the next screenshot
+  // Navigate Next Screenshot
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === selectedScreenshots.length - 1 ? 0 : prevIndex + 1
@@ -208,6 +200,7 @@ export default function Projects() {
               selectedScreenshots[currentIndex].endsWith(".mp4") ? (
                 <video
                   controls
+                  autoPlay
                   style={{
                     maxWidth: "100%",
                     maxHeight: "85vh",
