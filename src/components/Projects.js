@@ -47,6 +47,24 @@ const projects = [
     ],
     live: "#",
   },
+  {
+    title: "Bearing",
+    img: require("../assets/projects/screenshots/Bearing/1.jpg"),
+    screenshots: [require("../assets/projects/screenshots/Bearing/1.jpg")],
+    live: "#",
+  },
+  {
+    title: "Gear Wheel",
+    img: require("../assets/projects/screenshots/Gearwheel/1.jpg"),
+    screenshots: [require("../assets/projects/screenshots/Gearwheel/1.jpg")],
+    live: "#",
+  },
+  {
+    title: "Pipe Bend",
+    img: require("../assets/projects/screenshots/PipeBend/1.jpg"),
+    screenshots: [require("../assets/projects/screenshots/PipeBend/1.jpg")],
+    live: "#",
+  },
 ];
 
 export default function Projects() {
