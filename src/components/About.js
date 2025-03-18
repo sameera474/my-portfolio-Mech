@@ -94,6 +94,10 @@ export default function About() {
                 2024 - Mechanical Engineering and Production Technology, Tampere
                 Adult Education Centre, Nirva Campus
               </li>
+              <li>
+                Master of Computer Science Jamk University of Applied Sciences
+              </li>
+
               <li>2022 - MBA, University of Suffolk</li>
               <li>2015 - BSc in Materials Science, University of Moratuwa</li>
             </ul>
