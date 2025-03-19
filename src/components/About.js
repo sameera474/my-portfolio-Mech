@@ -91,11 +91,12 @@ export default function About() {
             </Typography>
             <ul>
               <li>
-                2024 - Mechanical Engineering and Production Technology, Tampere
+                2025 - Mechanical Engineering and Production Technology, Tampere
                 Adult Education Centre, Nirva Campus
               </li>
               <li>
-                Master of Computer Science Jamk University of Applied Sciences
+                2025 - Master of Computer Science Jamk University of Applied
+                Sciences
               </li>
 
               <li>2022 - MBA, University of Suffolk</li>
