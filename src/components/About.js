@@ -100,7 +100,10 @@ export default function About() {
               </li>
 
               <li>2022 - MBA, University of Suffolk, United Kingdom</li>
-              <li>2015 - BSc in Materials Science, University of Moratuwa</li>
+              <li>
+                2015 - BSc in Materials Science, University of Moratuwa, Sri
+                Lanka
+              </li>
             </ul>
           </Paper>
         </Grid>
