@@ -92,14 +92,14 @@ export default function About() {
             <ul>
               <li>
                 2025 - Mechanical Engineering and Production Technology, Tampere
-                Adult Education Centre, Nirva Campus
+                Adult Education Centre, Nirva Campus, Finland
               </li>
               <li>
                 2025 - Master of Computer Science Jamk University of Applied
-                Sciences
+                Sciences, Finland
               </li>
 
-              <li>2022 - MBA, University of Suffolk</li>
+              <li>2022 - MBA, University of Suffolk, United Kingdom</li>
               <li>2015 - BSc in Materials Science, University of Moratuwa</li>
             </ul>
           </Paper>
