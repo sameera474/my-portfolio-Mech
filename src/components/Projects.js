@@ -83,6 +83,15 @@ const projects = [
     ],
     live: "#",
   },
+
+  {
+    title: "MILL-harjoitus",
+    img: require("../assets/projects/screenshots/MILL-harjoitus/1.jpg"),
+    screenshots: [
+      require("../assets/projects/screenshots/MILL-harjoitus/1.jpg"),
+    ],
+    live: "#",
+  },
 ];
 
 export default function Projects() {
