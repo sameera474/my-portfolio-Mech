@@ -73,6 +73,16 @@ const projects = [
     screenshots: [require("../assets/projects/screenshots/PipeBend/1.jpg")],
     live: "#",
   },
+
+  {
+    title: "RIVERIA CNC Part",
+    img: require("../assets/projects/screenshots/RIVERIACNCPart/1.jpg"),
+    screenshots: [
+      require("../assets/projects/screenshots/RIVERIACNCPart/1.jpg"),
+      require("../assets/projects/screenshots/RIVERIACNCPart/2.jpg"),
+    ],
+    live: "#",
+  },
 ];
 
 export default function Projects() {
